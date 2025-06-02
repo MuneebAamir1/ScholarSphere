@@ -16,7 +16,6 @@ if ($mysqli->connect_errno) {
 if (isset($_GET['action']) && $_GET['action'] === 'delete_scholarship' && isset($_GET['id'])) {
     $scholarship_id = (int)$_GET['id'];
 
-    // Delete dependent applications first (if FK constraint exists)
     $stmt = $mysqli->prepare("DELETE FROM applications WHERE scholarship_id = ?");
     if ($stmt === false) {
         die("Prepare failed (applications delete): " . $mysqli->error);
